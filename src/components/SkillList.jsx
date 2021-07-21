@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddSkillModal from './AddSkillModal';
 
 export default function SkillList() {
     const [mySkills, setMySkills] = useState([]);
@@ -12,15 +13,20 @@ export default function SkillList() {
               }
           })
           .catch((err) => console.error(err));
-    });
+    }, []);
 
     console.log(mySkills);
 
     return (
         <div>
+            <div>
             {
                 mySkills.map((skill) => <div>{skill.label}</div>)
             }
+            </div>
+            <div>
+                <AddSkillModal />
+            </div>
         </div>
     );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Header, Modal, Form } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react';
 
-function ModalExampleModal() {
+function AddSkillModal() {
     const [open, setOpen] = useState(false);
     const [saving, setSaving] = useState(false);
     const [skill, setSkill] = useState({
@@ -73,5 +73,5 @@ function ModalExampleModal() {
     )
   }
   
-  export default ModalExampleModal
+  export default AddSkillModal;
   

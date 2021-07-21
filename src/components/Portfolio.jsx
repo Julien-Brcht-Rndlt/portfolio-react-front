@@ -6,22 +6,31 @@ import SkillList from './SkillList';
 
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
+    const [isLoad, setIsLoad] = useState(false);
 
     useEffect(() => {
         const getMyProfile = async () => {
             const response = await axios.get('http://localhost:8080/myself');
             if (response.status === 200) {
                 setMyProfile(response.data);
+                setIsLoad(true);
             }
         };
         getMyProfile();
     }, []);
 
     return (
-        <div>
+        <>
+        {
+          isLoad &&
+          (
+           <div>
             <AboutMe {...myProfile} />
             <ProjectList />
             <SkillList />
-        </div>
+          </div>
+          )
+        }
+        </>
     );
 }

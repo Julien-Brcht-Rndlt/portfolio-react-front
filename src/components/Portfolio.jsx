@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AboutMe from './AboutMe';
 
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
@@ -14,10 +15,9 @@ export default function Portfolio() {
         getMyProfile();
     }, []);
 
-    console.log(myProfile);
-
     return (
         <div>
+            <AboutMe {...myProfile} />
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddProjectModal from './AddProjectModal';
 
 export default function ProjectList() {
     const [myProjects, setMyProjects] = useState([]);
@@ -15,11 +16,15 @@ export default function ProjectList() {
     }, []);
 
     return (
+      <div>
         <div>
             {
                 myProjects.map((project) => <div>{project.title}</div>)
             }
-            
         </div>
+         <div>
+         <AddProjectModal setProjectList={setMyProjects}/>
+         </div>
+      </div>
     );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AboutMe from './AboutMe';
 import ProjectList from './ProjectList';
+import SkillList from './SkillList';
 
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
@@ -20,6 +21,7 @@ export default function Portfolio() {
         <div>
             <AboutMe {...myProfile} />
             <ProjectList />
+            <SkillList />
         </div>
     );
 }

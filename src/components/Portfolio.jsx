@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AboutMe from './AboutMe';
 import ProjectList from './ProjectList';
@@ -7,6 +8,7 @@ import SkillList from './SkillList';
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
     const [isLoad, setIsLoad] = useState(false);
+    const [content, setContent] = useState();
 
     useEffect(() => {
         const getMyProfile = async () => {
@@ -14,10 +16,17 @@ export default function Portfolio() {
             if (response.status === 200) {
                 setMyProfile(response.data);
                 setIsLoad(true);
+                console.log(response.data);
             }
         };
         getMyProfile();
     }, []);
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        setContent(event.target.name);
+        console.log(event.target.name);
+    }
 
     return (
         <>
@@ -26,8 +35,19 @@ export default function Portfolio() {
           (
            <div>
             <AboutMe {...myProfile} />
-            <ProjectList />
-            <SkillList />
+            <div><Link name='skills' onClick={(event) => handleClick(event)}>Skills</Link><Link name='projects' onClick={(event) => handleClick(event)}>Projects</Link></div>
+            {
+                content === 'projects' &&
+                (
+                  <ProjectList />
+                )
+            }
+            {
+                content === 'skills' &&
+                (
+                    <SkillList />
+                )
+            }
           </div>
           )
         }

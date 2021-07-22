@@ -15,14 +15,17 @@ function AddProjectModal({ setProjectList }) {
     });
 
     useEffect(() => {
+      if (saving) {
         axios.post('http://localhost:8080/projects', project)
           .then((response) => {
               if (response.status === 201) {
                 console.log('new project added to portfolio');
                 setProjectList((prevState) => [...prevState, response.data]);
+                setSaving(false);
               }
           })
           .catch((err) => console.error(err));
+      }
     }, [saving]);
 
     const handleFormChange = (event) => {

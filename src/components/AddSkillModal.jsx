@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Header, Modal, Form } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react';
 
-function AddSkillModal() {
+function AddSkillModal({ setSkillList }) {
     const [open, setOpen] = useState(false);
     const [saving, setSaving] = useState(false);
     const [skill, setSkill] = useState({
@@ -12,13 +12,17 @@ function AddSkillModal() {
     });
 
     useEffect(() => {
+      if(saving) {
         axios.post('http://localhost:8080/skills', skill)
           .then((response) => {
               if (response.status === 201) {
-                console.log('new skill added to portfolio');
+                console.log('new skill added to portfolio', response.data);
+                setSkillList((prevState) => [...prevState, response.data]);
+                setSaving(false);
               }
           })
           .catch((err) => console.error(err));
+      }
     }, [saving]);
 
     const handleFormChange = (event) => {

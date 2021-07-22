@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'semantic-ui-react'
 import AboutMe from './AboutMe';
 import ContactMe from './ContactMe';
 import ProfilePic from './ProfilePic';
 import ProjectList from './ProjectList';
 import SkillList from './SkillList';
+import HobbiesList from './HobbiesList';
 import Login from './Login';
+import { HeaderContainer, LoginContainer, MainContainerIcons } from '../styles/Portfolio/StyledPortfolio';
 
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
@@ -37,11 +40,32 @@ export default function Portfolio() {
           isLoad &&
           (
            <div>
-            <Login />
-            <ProfilePic {...myProfile} />
-            <AboutMe {...myProfile} />
+            <LoginContainer>
+                <Login />
+            </LoginContainer>
+            <HeaderContainer>
+            {/* <ProfilePic {...myProfile} /> */}
+            <div style={{display:"flex", justifyContent:"flex-end" }}>
+            <AboutMe {...myProfile} />  
             <ContactMe {...myProfile} />
-            <div><Link name='skills' onClick={(event) => handleClick(event)}>Skills</Link><Link name='projects' onClick={(event) => handleClick(event)}>Projects</Link></div>
+            </div>  
+            </HeaderContainer>
+            <div style={{display:"flex", justifyContent:"center"}}>
+                <div style={{padding:"40px", display:"flex"}}>
+                <Button style={{width:"11rem"}} basic color='blue' name='skills' onClick={(event) => handleClick(event)}>
+                    Skills
+                </Button>
+                <div style={{paddingRight:"20px", paddingLeft:"20px"}}>
+                <Button style={{width:"11rem"}} basic color='blue' name='projects' onClick={(event) => handleClick(event)}>
+                    Projects
+                </Button>
+                </div>
+                <Button style={{width:"11rem"}} basic color='blue' name='hobbies' onClick={(event) => handleClick(event)}>
+                    Hobbies
+                </Button>
+                </div>
+            </div>
+            <div style={{display:"flex", justifyContent:"center"}}>
             {
                 content === 'projects' &&
                 (
@@ -54,6 +78,13 @@ export default function Portfolio() {
                     <SkillList />
                 )
             }
+            {
+                content === 'hobbies' &&
+                (
+                    <HobbiesList />
+                )
+            }
+            </div>
           </div>
           )
         }

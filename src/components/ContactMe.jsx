@@ -65,62 +65,8 @@ export default function ContactMe({ contact, github, linkedin }) {
     }, [saveLinkedIn]);
 
     return(
-        <div>
-        <ul>
-          <li>
-          {
-            editContact ?
-            (
-              <>
-                <input id='myContact' value={myContact} onChange={(event) => (setMyContact(event.target.value))}/>
-                <Icon name='check' onClick={() => {
-                    setSaveContact(true);
-                    setEditContact(false);
-                }} />
-                <Icon name='x' onClick={() => setEditContact(false)} />
-              </>
-            )
-            : 
-            (
-              <>
-                {myContact}
-                {
-                  isAdmin && (
-                    <Icon name='edit' onClick={() => setEditContact(true)}/>
-                  )
-                }
-              </>
-            )
-          }
-          </li>
-
-          <li>
-          {
-            editGithub ?
-            (
-              <>
-                <input id='myGithub' value={myGithub} onChange={(event) => (setMyGithub(event.target.value))}/>
-                <Icon name='check' onClick={() => {
-                    setSaveGithub(true);
-                    setEditGithub(false);
-                }} />
-                <Icon name='x' onClick={() => setEditGithub(false)} />
-              </>
-            )
-            : 
-            (
-              <>
-                {myGithub}
-                {
-                  isAdmin && (
-                    <Icon name='edit' onClick={() => setEditGithub(true)}/>
-                  )
-                }
-              </>
-            )
-          }
-          </li>
-
+        <div style={{display:"flex", alignItems:"center"}}>
+        <ul style={{listStyle:"none"}}>
           <li>
           {
             editLinkedIn ?
@@ -137,13 +83,66 @@ export default function ContactMe({ contact, github, linkedin }) {
             : 
             (
               <>
-                {myLinkedIn}
+                <a href={myLinkedIn}><Icon name='linkedin' style={{color:"white", fontSize: "50px"}}/></a>
                 {
                   isAdmin && (
                     <Icon name='edit' onClick={() => setEditLinkedIn(true)}/>
                   )
                 }
               </>
+            )
+          }
+          </li>
+          <li>
+          {
+            editGithub ?
+            (
+              <>
+                <Icon name='github' />
+                <input id='myGithub' value={myGithub} onChange={(event) => (setMyGithub(event.target.value))}/>
+                <Icon name='check' onClick={() => {
+                    setSaveGithub(true);
+                    setEditGithub(false);
+                }} />
+                <Icon name='x' onClick={() => setEditGithub(false)} />
+              </>
+            )
+            : 
+            (
+              <>
+                <a href={myGithub}><Icon style={{color:"white", fontSize: "50px"}} name='github' /></a>
+                {
+                  isAdmin && (
+                    <Icon name='edit' onClick={() => setEditGithub(true)}/>
+                  )
+                }
+              </>
+            )
+          }
+          </li>
+          <li >
+          {
+            editContact ?
+            (
+             <>
+                <input id='myContact' value={myContact} onChange={(event) => (setMyContact(event.target.value))}/>
+                <Icon name='check' onClick={() => {
+                    setSaveContact(true);
+                    setEditContact(false);
+                }} />
+                <Icon name='x' onClick={() => setEditContact(false)} />
+         </>
+            )
+            : 
+            (
+             <>
+              <a href={`mailto:${myContact}`} ><Icon name='mail' style={{color:"white", fontSize: "50px"}} /></a>
+                {
+                  isAdmin && (
+                    <Icon name='edit' onClick={() => setEditContact(true)}/>
+                  )
+                }
+             </>
             )
           }
           </li>

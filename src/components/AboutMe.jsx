@@ -3,8 +3,8 @@ import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import styled from 'styled-components';
 import AdminContext from '../contexts/AdminContext';
-
-export const AboutMeContainer = styled.div``;
+import { AboutContainer, AboutPresentation } from '../styles/Portfolio/StyledPortfolio';
+import { ReactComponent as Van } from "../assets/Van.svg";
 
 export default function AboutMe({ firstname, lastname, role, remote, about}) {
     const [myRole, setMyRole] = useState(role);
@@ -51,13 +51,14 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
 
     return (
       <div>
-        <div>
-          <h3>{firstname}</h3></div>
+        <AboutContainer>
+          <h3 style={{fontSize:"50px", paddingTop:"15px"}}>{firstname}</h3>
         <div>
           {
             editRole ?
             (
               <>
+              
                 <input id='myRole' value={myRole} onChange={(event) => (setMyRole(event.target.value))}/>
                 {
                 isAdmin && (
@@ -75,7 +76,7 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
             : 
             (
               <>
-                <h4>{myRole}</h4>
+                <h4 style={{fontSize:"25px"}}>{myRole}</h4>
                 {
                 isAdmin && (
                 <Icon name='edit' onClick={() => setEditRole(true)}/>
@@ -85,7 +86,10 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
             )
           }
         </div>
-        <div><h5>{remote}</h5></div>
+        <div><h5 style={{fontSize:"17px", color:"white", fontWeight:"bold", paddingTop:"20px"}}>{remote}</h5></div>
+        <div>
+          <Van style={{ width: "300px", height: "300px" }}/>
+        </div>
         <div>
         {
           editAbout ?
@@ -108,7 +112,7 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
           : 
           (
             <>
-              <p>{myAbout}</p>
+              <AboutPresentation>{myAbout}</AboutPresentation>
               {
                 isAdmin && (
                   <Icon name='edit' onClick={() => setEditAbout(true)}/>
@@ -119,6 +123,8 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
         }
         
         </div>
+        </AboutContainer>
       </div>
+      
     );
 }

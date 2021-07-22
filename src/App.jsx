@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AppRouter from './AppRouter';
 import AdminContext from './contexts/AdminContext';
+import './App.css';
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);

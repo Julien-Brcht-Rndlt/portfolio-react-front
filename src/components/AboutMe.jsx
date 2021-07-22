@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
+import styled from 'styled-components'; 
+
+export const AboutMeContainer = styled.div``;
 
 export default function AboutMe({ firstname, lastname, role, about}) {
     const [myRole, setMyRole] = useState(role);
@@ -23,6 +26,7 @@ export default function AboutMe({ firstname, lastname, role, about}) {
         }
         if (saveRole) {
             saveRoleChanges();
+            setSaveRole(false);
         }
     }, [saveRole]);
 
@@ -37,6 +41,7 @@ export default function AboutMe({ firstname, lastname, role, about}) {
         }
         if (saveAbout) {
             saveAboutChanges();
+            setSaveAbout(false);
         }
     }, [saveAbout]);
 

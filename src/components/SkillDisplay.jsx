@@ -48,7 +48,7 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
     const saveSkillEdit = () => {
         setSaving(true);
         setEditable(false)
-    }
+    };
 
     return (
         <>

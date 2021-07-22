@@ -6,7 +6,7 @@ import AdminContext from '../contexts/AdminContext';
 
 export const AboutMeContainer = styled.div``;
 
-export default function AboutMe({ firstname, lastname, role, about}) {
+export default function AboutMe({ firstname, lastname, role, remote, about}) {
     const [myRole, setMyRole] = useState(role);
     const [editRole, setEditRole] = useState(false);
     const [saveRole, setSaveRole] = useState(false);
@@ -85,6 +85,7 @@ export default function AboutMe({ firstname, lastname, role, about}) {
             )
           }
         </div>
+        <div><h5>{remote}</h5></div>
         <div>
         {
           editAbout ?

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Button, Header, Modal, Form } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
+import AdminContext from '../contexts/AdminContext';
+import Cookie from 'universal-cookie';
 
 function LoginModal() {
     const [open, setOpen] = useState(false);
@@ -11,20 +13,20 @@ function LoginModal() {
         password: '',
     });
 
+    const { isAdmin, setIsAdmin } = useContext(AdminContext);
+
     useEffect(() => {
       if(checkLogin) {
         axios.post('http://localhost:8080/auth/login', admin)
           .then((response) => {
               if (response.status === 200) {
-                console.log('auth login', response);
-                console.log('cookie', response.cookie('jwt'));
-                console.log('resp data token', response.data.token);
-                window.localStorage.setItem('token', response.cookie('jwt'));
+                setIsAdmin(true);
               }
           })
           .catch((err) => console.error(err));
         setCheckLogin(false);
       }
+      console.log('isAdmin', isAdmin);
     }, [checkLogin]);
 
     const handleFormChange = (event) => {

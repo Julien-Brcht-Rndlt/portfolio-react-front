@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Icon } from 'semantic-ui-react';
+import AdminContext from '../contexts/AdminContext';
 
 export default function ProjectDisplay({ id, title, main_img, desc, github, url, setProjects }) {
     const [editable, setEditable] = useState(false);
@@ -13,6 +14,8 @@ export default function ProjectDisplay({ id, title, main_img, desc, github, url,
     });
     const [saving, setSaving] = useState(false);
     const [deleting, setDeleting] = useState(false);
+
+    const { isAdmin } = useContext(AdminContext);
 
     useEffect(() => {
         if (saving) {
@@ -68,8 +71,14 @@ export default function ProjectDisplay({ id, title, main_img, desc, github, url,
                     </div>
                 </div>
                 <div>
-                <Icon name='edit' onClick={() => setEditable(true)}/>
-                <Icon name='trash' onClick={() => deleteProject()}/>
+                {
+                  isAdmin && (
+                  <>
+                    <Icon name='edit' onClick={() => setEditable(true)}/>
+                    <Icon name='trash' onClick={() => deleteProject()}/>
+                  </>
+                  )
+                }
                 </div>
                 </>
             )

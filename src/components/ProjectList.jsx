@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ProjectDisplay from './ProjectDisplay';
 import AddProjectModal from './AddProjectModal';
+import AdminContext from '../contexts/AdminContext';
 
 export default function ProjectList() {
     const [myProjects, setMyProjects] = useState([]);
+
+    const { isAdmin } = useContext(AdminContext);
 
     useEffect(() => {
         const getProjectList = async () => {
@@ -24,7 +27,11 @@ export default function ProjectList() {
             }
         </div>
         <div>
+        {
+        isAdmin && (
           <AddProjectModal setProjectList={setMyProjects}/>
+        )
+        }
         </div>
       </div>
     );

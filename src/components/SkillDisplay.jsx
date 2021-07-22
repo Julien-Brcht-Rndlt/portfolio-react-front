@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Icon } from 'semantic-ui-react';
+import AdminContext from '../contexts/AdminContext';
 
 export default function SkillDisplay({ id, label, level, setSkills }) {
     const [editable, setEditable] = useState(false);
@@ -10,6 +11,8 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
     });
     const [saving, setSaving] = useState(false);
     const [deleting, setDeleting] = useState(false);
+
+    const { isAdmin } = useContext(AdminContext);
 
     useEffect(() => {
         if (saving) {
@@ -63,8 +66,14 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
                 <div>afficher icone</div>
               </div>
               <div>
-                <Icon name='edit' onClick={() => setEditable(true)}/>
-                <Icon name='trash' onClick={() => deleteSkill()}/>
+                {
+                  isAdmin && (
+                  <>
+                    <Icon name='edit' onClick={() => setEditable(true)}/>
+                    <Icon name='trash' onClick={() => deleteSkill()}/>
+                  </>
+                  )
+                }
               </div>
               </>
             )

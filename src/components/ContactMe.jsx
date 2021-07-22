@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import styled from 'styled-components';
+import AdminContext from '../contexts/AdminContext';
 
 export default function ContactMe({ contact, github, linkedin }) {
     const [myContact, setMyContact] = useState(contact);
@@ -15,6 +16,8 @@ export default function ContactMe({ contact, github, linkedin }) {
     const [myLinkedIn, setMyLinkedIn] = useState(linkedin);
     const [editLinkedIn, setEditLinkedIn] = useState(false);
     const [saveLinkedIn, setSaveLinkedIn] = useState(false);
+
+    const { isAdmin } = useContext(AdminContext);
 
     useEffect(() => {
         const saveContactChanges = async () => {
@@ -81,7 +84,11 @@ export default function ContactMe({ contact, github, linkedin }) {
             (
               <>
                 {myContact}
-                <Icon name='edit' onClick={() => setEditContact(true)}/>
+                {
+                  isAdmin && (
+                    <Icon name='edit' onClick={() => setEditContact(true)}/>
+                  )
+                }
               </>
             )
           }
@@ -104,7 +111,11 @@ export default function ContactMe({ contact, github, linkedin }) {
             (
               <>
                 {myGithub}
-                <Icon name='edit' onClick={() => setEditGithub(true)}/>
+                {
+                  isAdmin && (
+                    <Icon name='edit' onClick={() => setEditGithub(true)}/>
+                  )
+                }
               </>
             )
           }
@@ -127,7 +138,11 @@ export default function ContactMe({ contact, github, linkedin }) {
             (
               <>
                 {myLinkedIn}
-                <Icon name='edit' onClick={() => setEditLinkedIn(true)}/>
+                {
+                  isAdmin && (
+                    <Icon name='edit' onClick={() => setEditLinkedIn(true)}/>
+                  )
+                }
               </>
             )
           }

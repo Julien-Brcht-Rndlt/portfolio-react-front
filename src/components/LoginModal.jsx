@@ -3,7 +3,6 @@ import { Button, Header, Modal, Form } from 'semantic-ui-react'
 import { Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import AdminContext from '../contexts/AdminContext';
-import Cookie from 'universal-cookie';
 
 function LoginModal() {
     const [open, setOpen] = useState(false);

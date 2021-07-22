@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AboutMe from './AboutMe';
+import ContactMe from './ContactMe';
 import ProjectList from './ProjectList';
 import SkillList from './SkillList';
 
@@ -35,6 +36,7 @@ export default function Portfolio() {
           (
            <div>
             <AboutMe {...myProfile} />
+            <ContactMe {...myProfile} />
             <div><Link name='skills' onClick={(event) => handleClick(event)}>Skills</Link><Link name='projects' onClick={(event) => handleClick(event)}>Projects</Link></div>
             {
                 content === 'projects' &&

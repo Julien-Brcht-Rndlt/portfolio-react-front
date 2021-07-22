@@ -13,7 +13,7 @@ export default function ProfilePic({ profile_photo }) {
 
     useEffect(() => {
         if (savePhoto) {
-            axios.patch(`http://localhost:8080/myself/`, {
+            axios.patch(`http://localhost:8080/myself/1`, {
                 profile_photo: photo,
             }).then((response) => {
                 if (response.status === 200) {
@@ -41,7 +41,7 @@ export default function ProfilePic({ profile_photo }) {
               !editPhoto ? (
                   <>
                     <div>
-                        <image src={photo} alt='profile-pic' />
+                        <img src={photo} alt='profile-pic' />
                     </div>
                     <div>
                     {

@@ -5,6 +5,7 @@ import AboutMe from './AboutMe';
 import ContactMe from './ContactMe';
 import ProjectList from './ProjectList';
 import SkillList from './SkillList';
+import Login from './Login';
 
 export default function Portfolio() {
     const [myProfile, setMyProfile] = useState({});
@@ -35,6 +36,7 @@ export default function Portfolio() {
           isLoad &&
           (
            <div>
+            <Login />
             <AboutMe {...myProfile} />
             <ContactMe {...myProfile} />
             <div><Link name='skills' onClick={(event) => handleClick(event)}>Skills</Link><Link name='projects' onClick={(event) => handleClick(event)}>Projects</Link></div>

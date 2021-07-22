@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProjectDisplay from './ProjectDisplay';
 import AddProjectModal from './AddProjectModal';
 
 export default function ProjectList() {
@@ -19,12 +20,12 @@ export default function ProjectList() {
       <div>
         <div>
             {
-                myProjects.map((project) => <div>{project.title}</div>)
+              myProjects.map((project) => <ProjectDisplay key={project.id} {...project} setProjects={setMyProjects} />)
             }
         </div>
-         <div>
-         <AddProjectModal setProjectList={setMyProjects}/>
-         </div>
+        <div>
+          <AddProjectModal setProjectList={setMyProjects}/>
+        </div>
       </div>
     );
 }

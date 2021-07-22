@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AboutMe from './AboutMe';
 import ContactMe from './ContactMe';
+import ProfilePic from './ProfilePic';
 import ProjectList from './ProjectList';
 import SkillList from './SkillList';
 import Login from './Login';
@@ -37,6 +38,7 @@ export default function Portfolio() {
           (
            <div>
             <Login />
+            <ProfilePic {...myProfile} />
             <AboutMe {...myProfile} />
             <ContactMe {...myProfile} />
             <div><Link name='skills' onClick={(event) => handleClick(event)}>Skills</Link><Link name='projects' onClick={(event) => handleClick(event)}>Projects</Link></div>

@@ -1,9 +1,26 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { Icon } from 'semantic-ui-react';
 import AdminContext from '../contexts/AdminContext';
 
-export default function SkillDisplay({ id, label, level, setSkills }) {
+const SkillDisplayCard = styled.div`
+  padding: 35px;
+  border: 1px solid #3993c7;
+  border-radius: 4px;
+`;
+
+const SkillDisplayHeader = styled.div``;
+
+const SkillDisplayLabel = styled.h4``;
+
+const SkillDiplayContent = styled.div``;
+
+const SkillDisplayInfo = styled.h5``;
+
+const SkillDisplayImage = styled.img``;
+
+export default function SkillDisplay({ id, label, level, main_img, setSkills }) {
     const [editable, setEditable] = useState(false);
     const [skill, setSkill] = useState({
         label,
@@ -54,16 +71,16 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
     };
 
     return (
-        <>
+        <SkillDisplayCard>
         {
             !editable ? (
               <>
               <div>
                 <div>
-                  <div><h4>{label}</h4></div>
-                  <div><h5>{level}</h5></div>
+                  <div><h4> {'>_'} {label}</h4></div>
+                  <div><h5>{'level:'} {level}{/*  {'(optimist)'} */}</h5></div>
                 </div>
-                <div>afficher icone</div>
+                <div><img src={main_img} alt={`label-${label}`} /></div>
               </div>
               <div>
                 {
@@ -85,7 +102,7 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
                   <div><input name='label' value={skill.label} onChange={(event) => handleSkillChange(event)} /></div>
                   <div><input name='level' value={skill.level} onChange={(event) => handleSkillChange(event)} /></div>
                 </div>
-                <div>afficher icone</div>
+                <div><input name='main_img' value={skill.main_img} onChange={(event) => handleSkillChange(event)} /></div>
               </div>
               <div>
                 <Icon name='check' onClick={() => saveSkillEdit()} />
@@ -94,6 +111,6 @@ export default function SkillDisplay({ id, label, level, setSkills }) {
               </>
             )
         }
-        </>
+        </SkillDisplayCard>
     );
 }

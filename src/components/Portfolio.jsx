@@ -53,15 +53,15 @@ export default function Portfolio() {
             <div style={{display:"flex", justifyContent:"center"}}>
                 <div style={{padding:"40px", display:"flex"}}>
                 <Button style={{width:"11rem"}} basic color='blue' name='skills' onClick={(event) => handleClick(event)}>
-                    Skills
+                    // Skills
                 </Button>
                 <div style={{paddingRight:"20px", paddingLeft:"20px"}}>
                 <Button style={{width:"11rem"}} basic color='blue' name='projects' onClick={(event) => handleClick(event)}>
-                    Projects
+                    // Projects
                 </Button>
                 </div>
                 <Button style={{width:"11rem"}} basic color='blue' name='hobbies' onClick={(event) => handleClick(event)}>
-                    Hobbies
+                    // Hobbies
                 </Button>
                 </div>
             </div>

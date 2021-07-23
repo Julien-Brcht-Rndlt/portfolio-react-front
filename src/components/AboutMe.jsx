@@ -76,7 +76,7 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
             : 
             (
               <>
-                <h4 style={{fontSize:"25px"}}>{myRole}</h4>
+                <h4 style={{fontSize:"25px"}}> {myRole}</h4>
                 {
                 isAdmin && (
                 <Icon name='edit' onClick={() => setEditRole(true)}/>
@@ -112,7 +112,7 @@ export default function AboutMe({ firstname, lastname, role, remote, about}) {
           : 
           (
             <>
-              <AboutPresentation>{myAbout}</AboutPresentation>
+              <AboutPresentation>{'<'} {myAbout} {'/>'}</AboutPresentation>
               {
                 isAdmin && (
                   <Icon name='edit' onClick={() => setEditAbout(true)}/>

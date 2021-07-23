@@ -1,8 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import styled from "styled-components";
 import SkillDisplay from './SkillDisplay';
 import AddSkillModal from './AddSkillModal';
 import AdminContext from '../contexts/AdminContext';
+
+const SkillListCont = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default function SkillList() {
     const [mySkills, setMySkills] = useState([]);
@@ -22,7 +28,7 @@ export default function SkillList() {
     console.log('mySkills', mySkills);
 
     return (
-        <div>
+        <SkillListCont>
             <div>
             {
                 mySkills.map((skill) => <SkillDisplay key={skill.id} {...skill} setSkills={setMySkills} />)
@@ -35,6 +41,6 @@ export default function SkillList() {
               )
             }
             </div>
-        </div>
+        </SkillListCont>
     );
 }

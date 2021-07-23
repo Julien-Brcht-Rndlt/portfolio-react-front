@@ -80,12 +80,11 @@ function AddProjectModal({ setProjectList }) {
           <Button color='black' onClick={() => setOpen(false)}>
             Nope
           </Button>
-          <Button
+          <Button basic color='blue'
             content="Save"
             labelPosition='right'
             icon='checkmark'
             onClick={(event) => saveNewProject(event)}
-            positive
           />
         </Modal.Actions>
       </Modal>

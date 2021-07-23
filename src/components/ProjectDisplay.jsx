@@ -1,7 +1,26 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { Icon } from 'semantic-ui-react';
 import AdminContext from '../contexts/AdminContext';
+
+const ProjectDisplayCard = styled.div`
+  padding: 45px;
+  width: 30rem;
+  border: 1px solid #3993c7;
+  border-radius: 4px;
+`;
+
+const ProjectDisplayHeader = styled.div``;
+
+const ProjectDisplayLabel = styled.h4``;
+
+const ProjectDiplayContent = styled.div``;
+
+const ProjectDisplayInfo = styled.h5``;
+
+const ProjectDisplayImage = styled.img``;
+
 
 export default function ProjectDisplay({ id, title, main_img, desc, github, url, setProjects }) {
     const [editable, setEditable] = useState(false);
@@ -57,17 +76,19 @@ export default function ProjectDisplay({ id, title, main_img, desc, github, url,
     };
 
     return (
-        <>
+        <ProjectDisplayCard>
         {
             !editable ? (
                 <>
                 <div>
                     <div>
-                        <div>{project.main_img}</div>
-                        <div><h4>{project.title}</h4></div>
-                        <div><p>{project.desc}</p></div>
-                        <div>{project.github}</div>
-                        <div>{project.url}</div>
+                        <div><h4> {'@jna-wcs$_'}{project.title}</h4></div>
+                        <div><img src={project.main_img} alt={`title-${title}`} /></div>
+                        <div><p>{'<  '}{project.desc}{' />'}</p></div>
+                        <div style={{display: "flex"}}>
+                            <div><a href={project.github}><Icon name='github' /></a></div>
+                            <div><a href={project.url}><Icon name='world' /></a></div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -101,6 +122,6 @@ export default function ProjectDisplay({ id, title, main_img, desc, github, url,
                 </>
             )
         }
-        </>
+        </ProjectDisplayCard>
     );
 }

@@ -68,12 +68,11 @@ function LoginModal() {
           <Button color='black' onClick={() => setOpen(false)}>
             Nope
           </Button>
-          <Button
+          <Button basic color='blue'
             content="Login"
             labelPosition='right'
             icon='checkmark'
             onClick={(event) => handleCheckLogin(event)}
-            positive
             disabled={!admin.email || !admin.password}
           />
         </Modal.Actions>
